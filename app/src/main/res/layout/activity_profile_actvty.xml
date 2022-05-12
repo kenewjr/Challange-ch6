@@ -18,23 +18,28 @@
         android:layout_height="wrap_content"/>
 
     <EditText
-        android:id="@+id/upUser"
-        android:hint="username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/upNama"
+        android:id="@+id/up_nama"
         android:hint="nama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/upAdress"
-        android:hint="Adress"
+        android:id="@+id/up_address"
+        android:hint="address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/upLahir"
-        android:hint="Lahir"
+        android:id="@+id/up_umur"
+        android:hint="umur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/up_username"
+        android:hint="username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/up_pass"
+        android:hint="pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button

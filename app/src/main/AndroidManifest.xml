@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Challangech6"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.FavoriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ProfileActvty"
             android:exported="false" />
         <activity
@@ -35,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".view.FilmActvty"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -50,6 +50,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
        android:src="@drawable/ic_baseline_add_24"
+        android:id="@+id/btn_fav"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ package and5.abrar.challange_ch6.viewmodel
 
 import and5.abrar.challange_ch6.api.ApiClient
 import and5.abrar.challange_ch6.model.GetDataUserItem
+import and5.abrar.challange_ch6.model.PostNewUser
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import retrofit2.Call
@@ -11,7 +12,7 @@ import retrofit2.Response
 
 class ViewModelUser: ViewModel() {
     lateinit var liveDataLogin : MutableLiveData<List<GetDataUserItem>>
-    lateinit var liveDataUpdate : MutableLiveData<GetDataUserItem>
+    lateinit var liveDataUpdate : MutableLiveData<PostNewUser>
 
     init {
         liveDataLogin = MutableLiveData()
@@ -22,7 +23,7 @@ class ViewModelUser: ViewModel() {
     fun getLiveLogin(): MutableLiveData<List<GetDataUserItem>>{
         return liveDataLogin
     }
-    fun getLiveUpdate() : MutableLiveData<GetDataUserItem>{
+    fun getLiveUpdate() : MutableLiveData<PostNewUser>{
         return liveDataUpdate
     }
 
@@ -45,10 +46,10 @@ class ViewModelUser: ViewModel() {
             })
     }
 
-    fun updateUserAPI(id :Int, name : String, username: String, address: String, umur : String){
-        ApiClient.instance.updateUser(id.toString(), name, username, address, umur)
-            .enqueue(object : Callback<GetDataUserItem>{
-                override fun onResponse(call: Call<GetDataUserItem>, response: Response<GetDataUserItem>) {
+    fun updateUserAPI(id :Int, name : String,pass:String, username: String, address: String, umur : String, image:String){
+        ApiClient.instance.updateUser(id.toString(), name,pass, username, address, umur,image)
+            .enqueue(object : Callback<PostNewUser>{
+                override fun onResponse(call: Call<PostNewUser>, response: Response<PostNewUser>) {
                     if (response.isSuccessful){
                         liveDataUpdate.postValue(response.body())
                     }else{
@@ -56,10 +57,33 @@ class ViewModelUser: ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<GetDataUserItem>, t: Throwable) {
+                override fun onFailure(call: Call<PostNewUser>, t: Throwable) {
                     liveDataUpdate.postValue(null)
                 }
 
             })
+    }
+    fun addNewUserApi(
+        alamat: String,
+        image: String,
+        umur: Int,
+        username: String,
+        password: String,
+        name: String
+    ) : Boolean{
+        var messageResponse = false
+        ApiClient.instance.postDataUser(
+            PostNewUser(alamat,image,name,password,umur,username)
+        ).enqueue(object : Callback<GetDataUserItem>{
+            override fun onResponse(call: Call<GetDataUserItem>, response: Response<GetDataUserItem>) {
+                messageResponse = response.isSuccessful
+            }
+
+            override fun onFailure(call: Call<GetDataUserItem>, t: Throwable) {
+                messageResponse = false
+            }
+
+        })
+        return messageResponse
     }
 }

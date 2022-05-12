@@ -14,36 +14,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import kotlinx.android.synthetic.main.activity_login_actvty.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LoginActvty : AppCompatActivity() {
     lateinit var sf : SharedPreferences
     lateinit var usermanager : UserManager
     lateinit var listuserlogin : List<GetDataUserItem>
-    lateinit var namauser : String
-    lateinit var passuser : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_actvty)
         usermanager = UserManager(this)
-
-        val dataUser = getSharedPreferences("datauser" , Context.MODE_PRIVATE)
         sf = this.getSharedPreferences("datauser",Context.MODE_PRIVATE)
-
-        usermanager.userNama.asLiveData().observe(this) {
-            namauser = it.toString()
-        }
-        usermanager.userPass.asLiveData().observe(this) {
-            passuser = it.toString()
-        }
         btnLogin.setOnClickListener {
-            val inNama = nama.text.toString()
-            val inPass = pass.text.toString()
-            if (inNama == namauser && passuser == inPass) {
                 Login()
-                Toast.makeText(this, "ini benar", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "ini salah", Toast.LENGTH_SHORT).show()
-            }
         }
         btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActvty::class.java))
@@ -64,14 +48,23 @@ class LoginActvty : AppCompatActivity() {
         })
     }
     fun loginAuth(listlogin : List<GetDataUserItem>){
+        usermanager = UserManager(this)
         val nama = nama.text.toString()
         val  password = pass.text.toString()
         for(i in listlogin.indices){
             if (nama == listlogin[i].username && password == listlogin[i].password) {
-                sf = getSharedPreferences("datauser" , Context.MODE_PRIVATE)
-                val sfe = sf.edit()
-                sfe.putString("username", listlogin[i].username).apply()
-                sfe.putString("id", listlogin[i].id).apply()
+               GlobalScope.launch {
+                   usermanager.setBoolean(true)
+                   usermanager.saveData(
+                   listlogin[i].name,
+                   listlogin[i].id,
+                   listlogin[i].password,
+                   listlogin[i].image,
+                   listlogin[i].umur.toString(),
+                   listlogin[i].username,
+                   listlogin[i].address
+                   )
+               }
                 Toast.makeText(this, "Selamat Datang Di indomaret", Toast.LENGTH_SHORT).show()
             }
         }

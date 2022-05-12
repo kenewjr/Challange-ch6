@@ -23,8 +23,7 @@ class FilmActvty : AppCompatActivity() {
         setContentView(R.layout.activity_film_actvty)
         userManager = UserManager(this)
         prefs = getSharedPreferences("datauser" , Context.MODE_PRIVATE)
-        if()
-        userManager.userNama.asLiveData().observe(this) {
+        userManager.userName.asLiveData().observe(this) {
             welcome.text = "halo, $it"
         }
         adapterFilm = AdapterFilm(){

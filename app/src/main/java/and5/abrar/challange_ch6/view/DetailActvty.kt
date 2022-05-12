@@ -19,5 +19,8 @@ class DetailActvty : AppCompatActivity() {
         tvdesc.text = detailfilm?.description
 
         Glide.with(this).load(detailfilm?.image).into(imgdetail)
+        btn_fav.setOnClickListener {
+
+        }
     }
 }
