@@ -8,6 +8,12 @@
     android:layout_height="match_parent"
     tools:context=".view.RegisterActvty">
 
+<!--    <ImageView-->
+<!--        android:src="@drawable/ic_baseline_person_24"-->
+<!--        android:id="@+id/reg_image"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_width="300sp"-->
+<!--        android:layout_height="300sp"/>-->
     <EditText
         android:id="@+id/et_nama"
         android:hint="nama"
