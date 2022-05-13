@@ -17,12 +17,10 @@ import kotlinx.android.synthetic.main.activity_film_actvty.*
 class FilmActvty : AppCompatActivity() {
     lateinit var adapterFilm: AdapterFilm
     lateinit var userManager: UserManager
-    lateinit var prefs : SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_film_actvty)
         userManager = UserManager(this)
-        prefs = getSharedPreferences("datauser" , Context.MODE_PRIVATE)
         userManager.userName.asLiveData().observe(this) {
             welcome.text = "halo, $it"
         }
@@ -34,6 +32,9 @@ class FilmActvty : AppCompatActivity() {
         rvFilm.layoutManager=LinearLayoutManager(this)
         rvFilm.adapter=adapterFilm
         iniViewmodel()
+        fav.setOnClickListener {
+            startActivity(Intent(this,FavoriteActivity::class.java))
+        }
         avatar.setOnClickListener {
             startActivity(Intent(this, ProfileActvty::class.java))
         }

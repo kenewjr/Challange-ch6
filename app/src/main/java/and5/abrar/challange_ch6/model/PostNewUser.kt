@@ -1,7 +1,10 @@
 package and5.abrar.challange_ch6.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class PostNewUser(
     @SerializedName("address")
     val address: String,
@@ -15,4 +18,4 @@ data class PostNewUser(
     val umur: Int,
     @SerializedName("username")
     val username: String
-)
+):Parcelable

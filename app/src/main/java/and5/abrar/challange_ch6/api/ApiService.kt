@@ -13,7 +13,8 @@ interface ApiService {
 
     @GET("user")
     fun allUser(): Call<List<GetDataUserItem>>
-    @POST("user/{id}")
+    @PUT("user/{id}")
+    @FormUrlEncoded
     fun updateUser(
         @Path("id")id : String,
         @Field("name")name : String,
@@ -25,6 +26,6 @@ interface ApiService {
     ): Call<PostNewUser>
     @POST("user")
     fun detailUser(@Field("id") id : Int) : Call<List<GetDataUserItem>>
-    @POST("datauserlogin")
+    @POST("user")
     fun postDataUser(@Body reqUser: PostNewUser) : Call<GetDataUserItem>
 }

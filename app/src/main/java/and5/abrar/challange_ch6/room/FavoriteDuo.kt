@@ -12,7 +12,7 @@ interface FavoriteDuo {
     fun addFavorite(favorite : Favorite) : Long
 
     @Query("SELECT * FROM Favorite")
-    fun getFavorite(): LiveData<List<Favorite>>
+    fun getFavorite(): List<Favorite>
 
     @Delete
     fun deletefavorite(favorite: Favorite):Int

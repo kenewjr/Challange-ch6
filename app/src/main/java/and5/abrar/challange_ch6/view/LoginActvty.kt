@@ -18,14 +18,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class LoginActvty : AppCompatActivity() {
-    lateinit var sf : SharedPreferences
     lateinit var usermanager : UserManager
     lateinit var listuserlogin : List<GetDataUserItem>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_actvty)
         usermanager = UserManager(this)
-        sf = this.getSharedPreferences("datauser",Context.MODE_PRIVATE)
         btnLogin.setOnClickListener {
                 Login()
         }

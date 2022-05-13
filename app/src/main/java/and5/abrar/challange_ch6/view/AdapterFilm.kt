@@ -29,8 +29,8 @@ class AdapterFilm(private var onClik :(GetDataFilmItem)->Unit):RecyclerView.Adap
         Glide.with(holder.itemView.context)
             .load(dataFilm!![position].image)
             .into(holder.itemView.gambarFilm)
-        holder.itemView.namaFilm.text = "waktu : " + dataFilm!![position].name
-        holder.itemView.Director.text = "populasi : " + dataFilm!![position].director
+        holder.itemView.namaFilm.text =  dataFilm!![position].name
+        holder.itemView.Director.text = dataFilm!![position].director
     }
 
     override fun getItemCount(): Int {

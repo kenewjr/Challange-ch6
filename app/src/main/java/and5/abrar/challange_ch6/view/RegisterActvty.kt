@@ -3,17 +3,18 @@ package and5.abrar.challange_ch6.view
 import and5.abrar.challange_ch6.R
 import and5.abrar.challange_ch6.datastore.UserManager
 import and5.abrar.challange_ch6.viewmodel.ViewModelUser
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import kotlinx.android.synthetic.main.activity_register_actvty.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+
 
 class RegisterActvty : AppCompatActivity() {
     lateinit var viewModelUserApi : ViewModelUser
@@ -46,7 +47,8 @@ class RegisterActvty : AppCompatActivity() {
     ) {
         viewModelUserApi = ViewModelProvider(this).get(ViewModelUser::class.java)
         viewModelUserApi.addNewUserApi(alamat,image,umur,password,name,username)
-
-        Toast.makeText(this, "Registrasi berhasil", Toast.LENGTH_SHORT).show()
+        Handler(Looper.getMainLooper()).post {
+            Toast.makeText(this@RegisterActvty, "Registrasi berhasil", Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -20,12 +20,10 @@ import kotlinx.coroutines.launch
 class ProfileActvty : AppCompatActivity() {
     lateinit var viewModelUserApi : ViewModelUser
     lateinit var usermanager : UserManager
-    private lateinit var sharedPreference : SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_actvty)
         usermanager = UserManager(this)
-        sharedPreference = getSharedPreferences("datauser" , Context.MODE_PRIVATE)
         getDataProfile()
         btnUpdate.setOnClickListener {
             updateData()
@@ -79,10 +77,7 @@ class ProfileActvty : AppCompatActivity() {
             .setPositiveButton("YA"){ dialogInterface : DialogInterface, i : Int ->
                 viewModelUserApi = ViewModelProvider(this).get(ViewModelUser::class.java)
                 viewModelUserApi.updateUserAPI(id.toInt(),nama,pass,user,alamat,umur,image)
-
-                // disini toast sebenarnya gagal, tapi data di api tetap berhasil diupdate
                 Toast.makeText(this, "Update data berhasil", Toast.LENGTH_SHORT).show()
-                //ganti data yang ada di datastore
                 GlobalScope.launch {
                     usermanager.saveData(
                        nama,
