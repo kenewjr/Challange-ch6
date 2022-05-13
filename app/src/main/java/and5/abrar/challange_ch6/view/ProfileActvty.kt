@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_profile_actvty.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -37,6 +38,9 @@ class ProfileActvty : AppCompatActivity() {
         }
     fun getDataProfile(){
         usermanager = UserManager(this)
+        usermanager.Image.asLiveData().observe(this){
+            Glide.with(this.profileImage.context).load(it).into(this.profileImage)
+        }
        usermanager.Address.asLiveData().observe(this){
            up_address.setText(it)
        }

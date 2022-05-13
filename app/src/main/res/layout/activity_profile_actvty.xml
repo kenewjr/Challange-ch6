@@ -16,6 +16,11 @@
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_gravity="center"
+        android:layout_width="200sp"
+        android:layout_height="200sp"/>
 
     <EditText
         android:id="@+id/up_nama"

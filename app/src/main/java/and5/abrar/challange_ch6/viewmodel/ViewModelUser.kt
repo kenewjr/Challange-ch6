@@ -27,7 +27,6 @@ class ViewModelUser: ViewModel() {
         return liveDataUpdate
     }
 
-
     fun loginUserAPI(){
         ApiClient.instance.allUser()
             .enqueue(object : Callback<List<GetDataUserItem>>{
